@@ -28,7 +28,6 @@ sm-shop/.project
 **/.classpath
 */sm-shop/src/main/resources/*
 sm-shop/src/main/resources/database.properties
-sm-shop/src/main/resources/application.properties
 .DS_Store
 
 .mvnw/*.jar
