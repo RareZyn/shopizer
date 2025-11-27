@@ -83,9 +83,9 @@ To build the application:
 From the command line:
 
 	$ cd shopizer
-	$ mvnw clean install
+	$ .\mvnw clean install
 	$ cd sm-shop
-	$ mvnw spring-boot:run
+	$ .\mvnw spring-boot:run
 
 2. Shopizer admin
 
