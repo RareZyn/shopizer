@@ -1,0 +1,120 @@
+﻿WIF3006 COMPONENT BASED SOFTWARE ENGINEERING
+SEMESTER 1, 2025/2026
+
+
+ASSIGNMENT 2
+
+
+Assoc. Prof. Dr. Mumtaz Begum Mustafa
+Task Distribution
+
+
+Bil
+	Name
+	Matric Numbers
+	1
+	RAZIN BIN NAZARUDIN (LEADER)
+	U2102127
+	2
+	AINA NUR MALISA BINTI AZIZI 
+	U2101529
+	3
+	ABDUL HANIF BIN ABDUL AZIZ
+	U2101905
+	4
+	YOURISHA SOFEA BINTI MOHD YOUZAIMI
+	U2102065
+	5
+	JAWWAD IBNE KABIR
+	S2197172
+	________________
+Table of Contents
+LIST OF TABLES        3
+LIST OF FIGURES        3
+1.0 Introduction        4
+1.1 Background of Study        4
+1.2 Problem Statement        4
+1.3 Objectives        4
+2.0 Selection of Existing Monolithic System        5
+2.1 Description of the Selected System        5
+2.2 System Overview & Current Deployment        5
+2.3 Identified Modules (≥6 Modules Excluding Authentication)        5
+2.4 Functionalities of Each Module (≥4 per Module)        5
+2.5 Summary of System Problems & Constraints        5
+3.0 Monolithic System Design (UML)        6
+3.1 Use Case Diagram (Complete)
+3.2 Use Case Descriptions
+3.3 Monolithic Class Diagram
+3.4 Class Diagram        6
+4.0 Dependency Depth Analysis of Monolithic System        7
+4.1 Dependency Matrix / Table
+4.2 Description of High Coupling Areas
+4.3 Analysis of Dependency Depth
+4.4 Impact of Changes (Ripple Effect)
+4.5 Summary of Findings        7
+5.0 Component-Based Enhancement        8
+5.1 CBSE Rules Applied        8
+5.2 Proposed Component Architecture        8
+5.3 Component Design Diagrams        8
+6.0 Dependency Analysis Of Component-Based System        9
+6.1 Component Dependency Matrix        9
+6.2 Component Dependency Graph        9
+6.3 Coupling Metrics Analysis        9
+6.4 Dependency Depth Calculation        9
+6.5 Comparison with Monolithic Architecture        9
+6.5.1 Coupling Comparison .        9
+6.5.2 Dependency Depth Comparison        9
+6.5.3 Benefits Achieved        9
+7.0 Conclusion        10
+8. References        11
+
+
+
+
+List Of Tables 
+List Of Figures 
+1.0 Introduction
+1.1 Background of Study
+Shopizer is enterprise open source e-commerce software for retailers who want flexibility, speed and control of their commerce platform. Shopizer is a software solution that gives organizations the ultimate flexibility to take an experience-first approach to commerce, with simple powerful APIs and built in stores models.Shopizer is a an application composed of a set of services written in Java that serves functionality needed to build entreprise e-commerce systems.The software can be used out of the box as a complete ready to use web application including a few web stores templates you can choose from. Shopizer can also be used as a restful backend application for serving a whole set of commerce REST apis on which you can build your own tailored e-commerce front store.
+1.2 Problem Statement
+1.3 Objectives
+
+
+2.0 Selection of Existing Monolithic System
+2.1 Description of the Selected System
+2.2 System Overview & Current Deployment
+2.3 Identified Modules (≥6 Modules Excluding Authentication)
+2.4 Functionalities of Each Module (≥4 per Module)
+2.5 Summary of System Problems & Constraints
+
+
+3.0 Monolithic System Design (UML)
+3.1 Use Case Diagram (Complete)
+3.2 Use Case Descriptions
+3.3 Monolithic Class Diagram
+3.4 Class Diagram
+4.0 Dependency Depth Analysis of Monolithic System
+4.1 Dependency Matrix / Table
+4.2 Description of High Coupling Areas
+4.3 Analysis of Dependency Depth
+4.4 Impact of Changes (Ripple Effect)
+4.5 Summary of Findings
+5.0 Component-Based Enhancement
+5.1 CBSE Rules Applied
+5.2 Proposed Component Architecture
+5.3 Component Design Diagrams
+
+
+ 6.0 Dependency Analysis Of Component-Based System
+6.1 Component Dependency Matrix
+6.2 Component Dependency Graph
+6.3 Coupling Metrics Analysis
+6.4 Dependency Depth Calculation
+6.5 Comparison with Monolithic Architecture
+6.5.1 Coupling Comparison .
+6.5.2 Dependency Depth Comparison 
+6.5.3 Benefits Achieved
+
+
+7.0 Conclusion
+8. References
