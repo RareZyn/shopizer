@@ -1,0 +1,21 @@
+services:
+  - type: web
+    name: shopizer-backend
+    env: java
+    buildCommand: ./mvnw clean install -DskipTests
+    startCommand: cd sm-shop && java -Dserver.port=$PORT -jar target/sm-shop-*.jar
+    envVars:
+      - key: JAVA_TOOL_OPTIONS
+        value: -Xmx512m
+      - key: SPRING_DATASOURCE_URL
+        sync: false
+      - key: SPRING_DATASOURCE_USERNAME
+        sync: false
+      - key: SPRING_DATASOURCE_PASSWORD
+        sync: false
+      - key: SPRING_JPA_HIBERNATE_DDL_AUTO
+        value: update
+      - key: SPRING_JPA_DATABASE_PLATFORM
+        value: org.hibernate.dialect.PostgreSQL10Dialect
+      - key: ALLOWED_ORIGINS
+        sync: false

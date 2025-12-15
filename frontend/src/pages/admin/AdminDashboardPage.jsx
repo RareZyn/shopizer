@@ -63,7 +63,7 @@ const AdminDashboardPage = () => {
             <Card.Body>
               <ul>
                 <li>
-                  <a href="http://localhost:8080/swagger-ui.html" target="_blank" rel="noopener noreferrer">
+                  <a href={`${import.meta.env.VITE_API_BASE_URL?.replace('/api/v1', '') || 'http://localhost:8080'}/swagger-ui.html`} target="_blank" rel="noopener noreferrer">
                     API Documentation (Swagger)
                   </a>
                 </li>

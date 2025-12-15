@@ -40,9 +40,12 @@ backend/sm-shop/.project
 # Application specific
 backend/sm-shop/SALESMANAGER.lock.db
 backend/sm-shop/shopizer.log
-backend/sm-shop/src/main/resources/application.properties
 backend/sm-shop/src/main/resources/database.properties
 backend/*/sm-shop/src/main/resources/*
+
+# Environment files (keep application.properties for default config)
+backend/.env
+backend/**/.env
 
 # Rebel
 backend/sm-admin/**/rebel*.xml
@@ -68,10 +71,11 @@ frontend/build/
 # Environment files
 frontend/.env
 frontend/.env.local
+frontend/.env.development
 frontend/.env.development.local
 frontend/.env.test.local
+frontend/.env.production
 frontend/.env.production.local
-frontend/.env.development
 
 # Logs
 frontend/npm-debug.log*
@@ -97,3 +101,6 @@ Thumbs.db
 /bin/
 /WebContent/
 notes/Final Report.txt
+DEPLOYMENT_CHANGES.md
+DEPLOYMENT_CHECKLIST.md
+DEPLOYMENT.md

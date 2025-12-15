@@ -65,7 +65,7 @@ const HomePage = () => {
                 View the complete Shopizer API documentation via Swagger UI.
               </Card.Text>
               <Button
-                href="http://localhost:8080/swagger-ui.html"
+                href={`${import.meta.env.VITE_API_BASE_URL?.replace('/api/v1', '') || 'http://localhost:8080'}/swagger-ui.html`}
                 target="_blank"
                 variant="outline-secondary"
               >

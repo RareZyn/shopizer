@@ -108,11 +108,31 @@ Form compiling and running Shopizer admin consult the repo README file
 ### Access the application:
 -------------------
 
-Access the headless web application at: http://localhost:8081/swagger-ui.html
+Access the headless web application at: http://localhost:8080/swagger-ui.html
+Access the frontend at: http://localhost:3000
 
 
 The instructions above will let you run the application with default settings and configurations.
 Please read the instructions on how to connect to MySQL, configure an email server and configure other subsystems
+
+### Deployment:
+-------------------
+
+Deploy to production:
+
+**Frontend (Vercel) + Backend (Render)**
+
+See detailed deployment guides:
+- [DEPLOYMENT.md](./DEPLOYMENT.md) - Complete deployment guide
+- [DEPLOYMENT_CHECKLIST.md](./DEPLOYMENT_CHECKLIST.md) - Quick reference checklist
+
+Quick deployment summary:
+1. **Backend**: Deploy `backend/` folder to Render as a Java web service
+2. **Frontend**: Deploy `frontend/` folder to Vercel
+3. Configure environment variables on both platforms
+4. Update CORS settings with your frontend URL
+
+Both platforms offer free tiers suitable for development and testing.
 
 
 ### Documentation:
