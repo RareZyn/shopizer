@@ -104,3 +104,4 @@ notes/Final Report.txt
 DEPLOYMENT_CHANGES.md
 DEPLOYMENT_CHECKLIST.md
 DEPLOYMENT.md
+backend/.env.example
