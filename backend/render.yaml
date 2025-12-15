@@ -1,12 +1,14 @@
 services:
   - type: web
     name: shopizer-backend
-    env: java
-    buildCommand: ./mvnw clean install -DskipTests
-    startCommand: cd sm-shop && java -Dserver.port=$PORT -jar target/sm-shop-*.jar
+    env: docker
+    dockerfilePath: ./sm-shop/Dockerfile
+    dockerContext: ./
     envVars:
-      - key: JAVA_TOOL_OPTIONS
-        value: -Xmx512m
+      - key: PORT
+        value: 10000
+      - key: JAVA_OPTS
+        value: -Xmx512m -Xms256m
       - key: SPRING_DATASOURCE_URL
         sync: false
       - key: SPRING_DATASOURCE_USERNAME
@@ -17,5 +19,7 @@ services:
         value: update
       - key: SPRING_JPA_DATABASE_PLATFORM
         value: org.hibernate.dialect.PostgreSQL10Dialect
+      - key: SPRING_JPA_SHOW_SQL
+        value: false
       - key: ALLOWED_ORIGINS
         sync: false
