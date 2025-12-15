@@ -34,6 +34,10 @@ RUN mkdir -p /files
 # Copy the built JAR from build stage
 COPY --from=build /app/sm-shop/target/shopizer.jar /app/shopizer.jar
 
+# Copy database configuration script
+COPY sm-shop/create-db-config.sh /app/create-db-config.sh
+RUN chmod +x /app/create-db-config.sh
+
 # Set environment variables with defaults
 ENV PORT=8080
 ENV JAVA_OPTS="-Xmx512m -Xms256m"
@@ -41,6 +45,6 @@ ENV JAVA_OPTS="-Xmx512m -Xms256m"
 # Expose port (Render will use PORT env variable)
 EXPOSE ${PORT}
 
-# Run the application
-# Use PORT environment variable from Render
-CMD java $JAVA_OPTS -Dserver.port=$PORT -jar /app/shopizer.jar
+# Run the application via the config script
+# The script will generate database.properties from env vars and start the app
+CMD ["/app/create-db-config.sh"]
