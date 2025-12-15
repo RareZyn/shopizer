@@ -26,7 +26,7 @@ Headless commerce and Rest api for ecommerce
 Shopizer Headless commerce consists of the following components:
 
 
-Access the headless api: http://localhost:8080/swagger-ui.html
+Access the headless api: http://localhost:8081/swagger-ui.html
 
 
 See the demo: [**New demo on the way 2025]
@@ -59,7 +59,7 @@ docker run \
 ```
 docker run \
  -e "APP_MERCHANT=DEFAULT"
- -e "APP_BASE_URL=http://localhost:8080"
+ -e "APP_BASE_URL=http://localhost:8081"
  -p 80:80 shopizerecomm/shopizer-shop-reactjs
 ```
 
@@ -99,7 +99,7 @@ Form compiling and running Shopizer admin consult the repo README file
 ### Access the application:
 -------------------
 
-Access the headless web application at: http://localhost:8080/swagger-ui.html
+Access the headless web application at: http://localhost:8081/swagger-ui.html
 
 
 The instructions above will let you run the application with default settings and configurations.
@@ -109,7 +109,7 @@ Please read the instructions on how to connect to MySQL, configure an email serv
 ### Documentation:
 -------------------
 
-Documentation available [<https://shopizer-ecommerce.github.io/documentation/>](http://localhost:8080/swagger-ui/index.html)
+Documentation available [<https://shopizer-ecommerce.github.io/documentation/>](http://localhost:8081/swagger-ui/index.html)
 
 ChatOps <https://shopizer.slack.com>  - Join our Slack channel <https://communityinviter.com/apps/shopizer/shopizer>
 

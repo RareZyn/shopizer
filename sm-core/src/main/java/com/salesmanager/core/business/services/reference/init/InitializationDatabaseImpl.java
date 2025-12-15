@@ -401,7 +401,7 @@ public class InitializationDatabaseImpl implements InitializationDatabase {
 		store.setStoreaddress("1234 Street address");
 		store.setStorepostalcode("H2H-2H2");
 		store.setStoreEmailAddress("contact@shopizer.com");
-		store.setDomainName("localhost:8080");
+		store.setDomainName("localhost:1");
 		store.setStoreTemplate("december");
 		store.setRetailer(true);
 		store.setLanguages(supportedLanguages);

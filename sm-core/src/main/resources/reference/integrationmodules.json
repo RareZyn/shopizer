@@ -62,6 +62,14 @@
 	},
 	{
 		"module": "PAYMENT",
+		"code": "cod",
+		"type":"cod",
+		"version":"",
+		"regions": ["*"],
+		"image":"cod.gif"
+	},
+	{
+		"module": "PAYMENT",
 		"code": "paypal-express-checkout",
 		"type":"paypal",
 		"version":"104.0",

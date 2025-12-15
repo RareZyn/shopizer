@@ -38,8 +38,8 @@ public class PersistableTransactionPopulator extends AbstractDataPopulator<Persi
 
 			target.setAmount(pricingService.getAmount(source.getAmount()));
 			target.setDetails(source.getDetails());
-			target.setPaymentType(PaymentType.valueOf(source.getPaymentType()));
-			target.setTransactionType(TransactionType.valueOf(source.getTransactionType()));
+			target.setPaymentType(PaymentType.fromString(source.getPaymentType()));
+			target.setTransactionType(TransactionType.valueOf(source.getTransactionType().toUpperCase()));
 			target.setTransactionDate(DateUtil.getDate(source.getTransactionDate()));
 			
 			if(source.getOrderId()!=null && source.getOrderId().longValue() > 0) {

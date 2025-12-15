@@ -358,7 +358,7 @@ public class OrderFacadeImpl implements OrderFacade {
 			modelOrder.setBilling(customer.getBilling());
 			modelOrder.setDelivery(customer.getDelivery());
 			modelOrder.setPaymentModuleCode(order.getPaymentModule());
-			modelOrder.setPaymentType(PaymentType.valueOf(order.getPaymentMethodType()));
+			modelOrder.setPaymentType(PaymentType.fromString(order.getPaymentMethodType()));
 			modelOrder.setShippingModuleCode(order.getShippingModule());
 			modelOrder.setCustomerAgreement(order.isCustomerAgreed());
 			modelOrder.setLocale(LocaleUtils.getLocale(store));// set the store
@@ -456,7 +456,7 @@ public class OrderFacadeImpl implements OrderFacade {
 
 			String paymentType = order.getPaymentMethodType();
 			Payment payment = new Payment();
-			payment.setPaymentType(PaymentType.valueOf(paymentType));
+			payment.setPaymentType(PaymentType.fromString(paymentType));
 			payment.setAmount(order.getOrderTotalSummary().getTotal());
 			payment.setModuleName(order.getPaymentModule());
 			payment.setCurrency(modelOrder.getCurrency());
@@ -483,7 +483,7 @@ public class OrderFacadeImpl implements OrderFacade {
 
 				Map<String, String> paymentMetaData = order.getPayment();
 				payment.setPaymentMetaData(paymentMetaData);
-				payment.setPaymentType(PaymentType.valueOf(paymentType));
+				payment.setPaymentType(PaymentType.fromString(paymentType));
 				payment.setAmount(order.getOrderTotalSummary().getTotal());
 				payment.setModuleName(order.getPaymentModule());
 				payment.setCurrency(modelOrder.getCurrency());

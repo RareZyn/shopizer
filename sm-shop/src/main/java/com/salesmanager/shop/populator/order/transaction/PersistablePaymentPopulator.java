@@ -33,11 +33,11 @@ public class PersistablePaymentPopulator extends AbstractDataPopulator<Persistab
 		}
 		
 		try {
-		
+
 			target.setAmount(pricingService.getAmount(source.getAmount()));
 			target.setModuleName(source.getPaymentModule());
-			target.setPaymentType(PaymentType.valueOf(source.getPaymentType()));
-			target.setTransactionType(TransactionType.valueOf(source.getTransactionType()));
+			target.setPaymentType(PaymentType.fromString(source.getPaymentType()));
+			target.setTransactionType(TransactionType.valueOf(source.getTransactionType().toUpperCase()));
 			
 			Map<String,String> metadata = new HashMap<String,String>();
 			metadata.put("paymentToken", source.getPaymentToken());

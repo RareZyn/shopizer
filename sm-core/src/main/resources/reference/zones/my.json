@@ -1,0 +1,84 @@
+{
+  "*":[
+	{
+		"zoneCode": "Johor",
+		"zoneName": "Johor",
+		"countryCode": "MY"
+	},
+	{
+		"zoneCode": "Kedah",
+		"zoneName": "Kedah",
+		"countryCode": "MY"
+	},
+	{
+		"zoneCode": "Kelantan",
+		"zoneName": "Kelantan",
+		"countryCode": "MY"
+	},
+	{
+		"zoneCode": "Melaka",
+		"zoneName": "Melaka",
+		"countryCode": "MY"
+	},
+	{
+		"zoneCode": "NegeriSembilan",
+		"zoneName": "Negeri Sembilan",
+		"countryCode": "MY"
+	},
+	{
+		"zoneCode": "Pahang",
+		"zoneName": "Pahang",
+		"countryCode": "MY"
+	},
+	{
+		"zoneCode": "Penang",
+		"zoneName": "Penang",
+		"countryCode": "MY"
+	},
+	{
+		"zoneCode": "Perak",
+		"zoneName": "Perak",
+		"countryCode": "MY"
+	},
+	{
+		"zoneCode": "Perlis",
+		"zoneName": "Perlis",
+		"countryCode": "MY"
+	},
+	{
+		"zoneCode": "Sabah",
+		"zoneName": "Sabah",
+		"countryCode": "MY"
+	},
+	{
+		"zoneCode": "Sarawak",
+		"zoneName": "Sarawak",
+		"countryCode": "MY"
+	},
+	{
+		"zoneCode": "Selangor",
+		"zoneName": "Selangor",
+		"countryCode": "MY"
+	},
+	{
+		"zoneCode": "Terengganu",
+		"zoneName": "Terengganu",
+		"countryCode": "MY"
+	},
+	{
+		"zoneCode": "KualaLumpur",
+		"zoneName": "Kuala Lumpur",
+		"countryCode": "MY"
+	},
+	{
+		"zoneCode": "Labuan",
+		"zoneName": "Labuan",
+		"countryCode": "MY"
+	},
+	{
+		"zoneCode": "Putrajaya",
+		"zoneName": "Putrajaya",
+		"countryCode": "MY"
+	}
+  ]
+}

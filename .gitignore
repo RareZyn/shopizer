@@ -29,5 +29,9 @@ sm-shop/.project
 */sm-shop/src/main/resources/*
 sm-shop/src/main/resources/database.properties
 .DS_Store
-
+notes/Final Report.txt
 .mvnw/*.jar
+frontend/src/App.jsx
+backend.log
+frontend/.env.development
+sm-shop/shopizer.log

@@ -49,16 +49,15 @@ public class PersistableOrderApiPopulator extends AbstractDataPopulator<Persista
 	private DigitalProductService digitalProductService;*/
 	@Autowired
 	private CustomerPopulator customerPopulator;
-	
-	
 
-	
+
+
 
 
 	@Override
 	public Order populate(PersistableOrder source, Order target, MerchantStore store, Language language)
 			throws ConversionException {
-		
+
 
 /*		Validate.notNull(currencyService,"currencyService must be set");
 		Validate.notNull(customerService,"customerService must be set");
@@ -67,29 +66,34 @@ public class PersistableOrderApiPopulator extends AbstractDataPopulator<Persista
 		Validate.notNull(productAttributeService,"productAttributeService must be set");
 		Validate.notNull(digitalProductService,"digitalProductService must be set");*/
 		Validate.notNull(source.getPayment(),"Payment cannot be null");
-		
+
 		try {
-			
+
 			if(target == null) {
 				target = new Order();
 			}
-		
+
 			//target.setLocale(LocaleUtils.getLocale(store));
 
 			target.setLocale(LocaleUtils.getLocale(store));
-			
-			
+
+			// If currency is not provided in the order, use the store's default currency
+			String currencyCode = source.getCurrency();
+			if (StringUtils.isBlank(currencyCode)) {
+				currencyCode = store.getCurrency().getCode();
+			}
+
 			Currency currency = null;
 			try {
-				currency = currencyService.getByCode(source.getCurrency());
+				currency = currencyService.getByCode(currencyCode);
 			} catch(Exception e) {
-				throw new ConversionException("Currency not found for code " + source.getCurrency());
+				throw new ConversionException("Currency not found for code " + currencyCode);
 			}
-			
+
 			if(currency==null) {
-				throw new ConversionException("Currency not found for code " + source.getCurrency());
+				throw new ConversionException("Currency not found for code " + currencyCode);
 			}
-			
+
 			//Customer
 			Customer customer = null;
 			if(source.getCustomerId() != null && source.getCustomerId().longValue() >0) {
@@ -100,7 +104,7 @@ public class PersistableOrderApiPopulator extends AbstractDataPopulator<Persista
 				throw new ConversionException("Curstomer with id " + source.getCustomerId() + " does not exist");
 			  }
 			  target.setCustomerId(customerId);
-			
+
 			} else {
 			  if(source instanceof PersistableAnonymousOrder) {
 			    PersistableCustomer persistableCustomer = ((PersistableAnonymousOrder)source).getCustomer();
@@ -108,18 +112,18 @@ public class PersistableOrderApiPopulator extends AbstractDataPopulator<Persista
 			    customer = customerPopulator.populate(persistableCustomer, customer, store, language);
 			  } else {
 			    throw new ConversionException("Curstomer details or id not set in request");
-			  } 
+			  }
 			}
-			
-			
+
+
 			target.setCustomerEmailAddress(customer.getEmailAddress());
-			
+
 			Delivery delivery = customer.getDelivery();
 			target.setDelivery(delivery);
-			
+
 			Billing billing = customer.getBilling();
 			target.setBilling(billing);
-			
+
 			if(source.getAttributes() != null && source.getAttributes().size() > 0) {
 				Set<OrderAttribute> attrs = new HashSet<OrderAttribute>();
 				for(com.salesmanager.shop.model.order.OrderAttribute attribute : source.getAttributes()) {
@@ -140,12 +144,12 @@ public class PersistableOrderApiPopulator extends AbstractDataPopulator<Persista
 			//need this
 			target.setStatus(OrderStatus.ORDERED);
 			target.setPaymentModuleCode(source.getPayment().getPaymentModule());
-			target.setPaymentType(PaymentType.valueOf(source.getPayment().getPaymentType()));
-			
+			target.setPaymentType(PaymentType.fromString(source.getPayment().getPaymentType()));
+
 			target.setCustomerAgreement(source.isCustomerAgreement());
 			target.setConfirmedAddress(true);//force this to true, cannot perform this activity from the API
 
-			
+
 			if(!StringUtils.isBlank(source.getComments())) {
 				OrderStatusHistory statusHistory = new OrderStatusHistory();
 				statusHistory.setStatus(null);
@@ -153,9 +157,9 @@ public class PersistableOrderApiPopulator extends AbstractDataPopulator<Persista
 				statusHistory.setComments(source.getComments());
 				target.getOrderHistory().add(statusHistory);
 			}
-			
+
 			return target;
-		
+
 		} catch(Exception e) {
 			throw new ConversionException(e);
 		}
