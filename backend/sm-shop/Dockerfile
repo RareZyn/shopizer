@@ -25,7 +25,7 @@ COPY sm-shop/src sm-shop/src
 RUN mvn clean package -DskipTests -B
 
 # Stage 2: Runtime
-FROM openjdk:11-jre-slim
+FROM eclipse-temurin:11-jre-jammy
 WORKDIR /app
 
 # Create directory for file uploads
