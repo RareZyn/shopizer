@@ -32,7 +32,7 @@ WORKDIR /app
 RUN mkdir -p /files
 
 # Copy the built JAR from build stage
-COPY --from=build /app/sm-shop/target/sm-shop-*.jar /app/shopizer.jar
+COPY --from=build /app/sm-shop/target/shopizer.jar /app/shopizer.jar
 
 # Set environment variables with defaults
 ENV PORT=8080
