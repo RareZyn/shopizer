@@ -86,9 +86,6 @@ frontend/yarn-error.log*
 frontend/.vscode/
 frontend/.idea/
 
-# Temporary files
-frontend/src/App.jsx
-
 # ====================
 # General
 # ====================
