@@ -6,40 +6,70 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 Shopizer is a headless Java e-commerce platform built with Spring Boot 2.5.12. It provides REST APIs for catalog, shopping cart, checkout, merchant management, orders, customers, and users. The application uses a multi-module Maven structure and is designed for Java 11+ (tested with Java 11, 17).
 
+### Project Structure
+
+This is a monorepo with separated frontend and backend:
+- **`backend/`** - Java/Spring Boot backend with 5 Maven modules (sm-core, sm-core-model, sm-core-modules, sm-shop, sm-shop-model)
+- **`frontend/`** - Vite-based frontend application
+
 ## Build and Run Commands
 
-### Build the entire project
+### Backend
+
+#### Build the entire backend
 ```bash
+cd backend
 ./mvnw clean install
 ```
 
-### Run the application (from root directory)
+#### Run the application
 ```bash
-cd sm-shop
+cd backend/sm-shop
 ../mvnw spring-boot:run
 ```
 
-### Run with specific database
-Edit `sm-shop/src/main/resources/application.properties` to configure database connection. By default, uses H2 in-memory database. MySQL, PostgreSQL, and Oracle configurations are available but commented out in the parent pom.xml.
+#### Run with specific database
+Edit `backend/sm-shop/src/main/resources/application.properties` to configure database connection. By default, uses H2 in-memory database. MySQL, PostgreSQL, and Oracle configurations are available but commented out in the parent pom.xml.
 
-### Access the API
+#### Access the API
 Once running, access Swagger UI at: http://localhost:8080/swagger-ui.html
 
-### Run tests
+#### Run tests
 ```bash
+cd backend
 ./mvnw test
 ```
 
-### Run tests for specific module
+#### Run tests for specific module
 ```bash
-cd sm-shop
+cd backend/sm-shop
 ../mvnw test
 ```
 
-### Build Docker image
+#### Build Docker image
 ```bash
-cd sm-shop
+cd backend/sm-shop
 docker build . -t shopizer:local
+```
+
+### Frontend
+
+#### Install dependencies
+```bash
+cd frontend
+npm install
+```
+
+#### Run development server
+```bash
+cd frontend
+npm run dev
+```
+
+#### Build for production
+```bash
+cd frontend
+npm run build
 ```
 
 ### Run from Docker
@@ -70,7 +100,7 @@ The project is organized into 5 Maven modules that follow a layered architecture
    - Business rules and validation
    - Event handling (product events, asynchronous processing)
    - Configuration (Drools, Database, Search)
-   - Located at: `sm-core/src/main/java/com/salesmanager/core/business/`
+   - Located at: `backend/sm-core/src/main/java/com/salesmanager/core/business/`
 
 4. **sm-shop-model** - API request/response DTOs
    - REST API models (request/response objects)
@@ -84,7 +114,7 @@ The project is organized into 5 Maven modules that follow a layered architecture
    - Facades - business logic orchestration layer between controllers and services
    - Mappers - MapStruct mappers to convert between DTOs and entities
    - Security configuration (JWT-based)
-   - Located at: `sm-shop/src/main/java/com/salesmanager/shop/`
+   - Located at: `backend/sm-shop/src/main/java/com/salesmanager/shop/`
 
 ### Architectural Pattern
 
@@ -104,13 +134,13 @@ Entity (domain model)
 
 **Key architectural concepts:**
 
-- **Facades** (`sm-shop/store/facade/`) orchestrate multiple services and handle complex workflows. They serve as an anti-corruption layer between the API and business layer.
+- **Facades** (`backend/sm-shop/store/facade/`) orchestrate multiple services and handle complex workflows. They serve as an anti-corruption layer between the API and business layer.
 
-- **Mappers** use MapStruct for DTO ↔ Entity conversion. The mapper interfaces are in `sm-shop/mapper/` and MapStruct generates implementations at compile time.
+- **Mappers** use MapStruct for DTO ↔ Entity conversion. The mapper interfaces are in `backend/sm-shop/mapper/` and MapStruct generates implementations at compile time.
 
-- **Services** (`sm-core/business/services/`) contain business logic and are transaction-aware. Services are organized by domain (catalog, customer, order, etc.).
+- **Services** (`backend/sm-core/business/services/`) contain business logic and are transaction-aware. Services are organized by domain (catalog, customer, order, etc.).
 
-- **Repositories** (`sm-core/business/repositories/`) use Spring Data JPA for persistence. Most are simple interfaces extending JpaRepository.
+- **Repositories** (`backend/sm-core/business/repositories/`) use Spring Data JPA for persistence. Most are simple interfaces extending JpaRepository.
 
 - **Event-driven architecture** for product operations - product save/delete operations trigger events that are handled asynchronously (e.g., for search indexing).
 
@@ -121,11 +151,11 @@ REST APIs are organized by version:
 - **v1** - Stable production APIs
 - **v2** - Newer APIs with enhanced features
 
-API controllers are in: `sm-shop/src/main/java/com/salesmanager/shop/store/api/v{N}/`
+API controllers are in: `backend/sm-shop/src/main/java/com/salesmanager/shop/store/api/v{N}/`
 
 ### Security
 
-- JWT-based authentication configured in `sm-shop/store/security/`
+- JWT-based authentication configured in `backend/sm-shop/store/security/`
 - Spring Security with custom authentication filters
 - API endpoints can be secured via annotations
 - Default SecurityAutoConfiguration is excluded in ShopApplication
@@ -133,7 +163,7 @@ API controllers are in: `sm-shop/src/main/java/com/salesmanager/shop/store/api/v
 ### Configuration
 
 Key configuration files:
-- `sm-shop/src/main/resources/application.properties` - Main Spring Boot configuration
+- `backend/sm-shop/src/main/resources/application.properties` - Main Spring Boot configuration
 - Database schema: `SALESMANAGER` (configurable via `spring.jpa.properties.hibernate.default_schema`)
 - Server runs on port 8080 by default
 - Hibernate statistics and SQL logging are configurable
@@ -169,23 +199,23 @@ All domain models in `sm-core-model` are organized by business domain:
 
 ### Adding a new REST endpoint
 
-1. Create request/response DTOs in `sm-shop-model` if needed
-2. Create or update a Facade in `sm-shop/store/facade/` to orchestrate business logic
-3. Create MapStruct mapper interfaces in `sm-shop/mapper/` for DTO conversions
-4. Add controller endpoint in appropriate API version in `sm-shop/store/api/v{N}/`
-5. Services and repositories should already exist in `sm-core` for most operations
+1. Create request/response DTOs in `backend/sm-shop-model` if needed
+2. Create or update a Facade in `backend/sm-shop/store/facade/` to orchestrate business logic
+3. Create MapStruct mapper interfaces in `backend/sm-shop/mapper/` for DTO conversions
+4. Add controller endpoint in appropriate API version in `backend/sm-shop/store/api/v{N}/`
+5. Services and repositories should already exist in `backend/sm-core` for most operations
 
 ### Adding a new entity
 
-1. Create JPA entity in `sm-core-model/model/` under appropriate domain package
-2. Create Spring Data repository in `sm-core/repositories/` under matching domain package
-3. Create service interface and implementation in `sm-core/services/` under matching domain package
-4. Create DTOs in `sm-shop-model` and mappers in `sm-shop/mapper/`
+1. Create JPA entity in `backend/sm-core-model/model/` under appropriate domain package
+2. Create Spring Data repository in `backend/sm-core/repositories/` under matching domain package
+3. Create service interface and implementation in `backend/sm-core/services/` under matching domain package
+4. Create DTOs in `backend/sm-shop-model` and mappers in `backend/sm-shop/mapper/`
 
 ### Running a single test
 
 ```bash
-cd sm-shop
+cd backend/sm-shop
 ../mvnw test -Dtest=ProductManagementAPIIntegrationTest
 ```
 
@@ -193,6 +223,7 @@ cd sm-shop
 
 MapStruct generates mapper implementations at compile time. After modifying mapper interfaces:
 ```bash
+cd backend
 ./mvnw clean compile
 ```
 This triggers the MapStruct annotation processor configured in the parent pom.xml.
@@ -205,7 +236,7 @@ The project uses Hibernate's `ddl-auto` for schema management. For production, c
 
 ### Integration Tests
 
-Integration tests are in `sm-shop/src/test/` and use:
+Integration tests are in `backend/sm-shop/src/test/` and use:
 - `@SpringBootTest` with `WebEnvironment.RANDOM_PORT`
 - RestTemplate for API testing
 - Organized by domain (product, category, cart, order, etc.)
@@ -222,7 +253,7 @@ CircleCI is configured in `.circleci/config.yml`:
 ## Common Issues
 
 ### MapStruct compilation errors
-Run `mvnw clean compile` to regenerate mapper implementations.
+Run `cd backend && mvnw clean compile` to regenerate mapper implementations.
 
 ### Port already in use
 Default port is 8080. Change in `application.properties`: `server.port=XXXX`

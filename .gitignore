@@ -1,37 +1,99 @@
-# Ignored files
+# ====================
+# Backend (Java/Maven)
+# ====================
+
+# Compiled class files
 *.class
+
+# Package files
 *.jar
+*.war
+*.ear
+
+# Maven
+backend/*/target/
+backend/**/target/
+backend/.mvn/*.jar
+
+# IDE - Eclipse
 *.lst
-*/target/
-*.class
-*.idea/
+.project
+.classpath
+**/.settings/
+**/.classpath
 *.iml
-*/target/*
+backend/sm-admin/.project
+backend/sm-core-model/.project
+backend/sm-core-modules/.project
+backend/sm-core/.project
+backend/sm-shop/.project
+
+# IDE - IntelliJ
+*.idea/
 .idea/workspace.xml
-*.class
+**/.idea/
+
+# Build directories
+**/bin/
+**/build/
+
+# Application specific
+backend/sm-shop/SALESMANAGER.lock.db
+backend/sm-shop/shopizer.log
+backend/sm-shop/src/main/resources/application.properties
+backend/sm-shop/src/main/resources/database.properties
+backend/*/sm-shop/src/main/resources/*
+
+# Rebel
+backend/sm-admin/**/rebel*.xml
+backend/sm-shop/**/rebel*.xml
+
+# Logs
+*.log
+backend.log
+
+# ====================
+# Frontend (Node/Vite)
+# ====================
+
+# Dependencies
+frontend/node_modules/
+frontend/.pnp
+frontend/.pnp.js
+
+# Production build
+frontend/dist/
+frontend/build/
+
+# Environment files
+frontend/.env
+frontend/.env.local
+frontend/.env.development.local
+frontend/.env.test.local
+frontend/.env.production.local
+frontend/.env.development
+
+# Logs
+frontend/npm-debug.log*
+frontend/yarn-debug.log*
+frontend/yarn-error.log*
+
+# IDE
+frontend/.vscode/
+frontend/.idea/
+
+# Temporary files
+frontend/src/App.jsx
+
+# ====================
+# General
+# ====================
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Other
 /bin/
 /WebContent/
-sm-shop/SALESMANAGER.lock.db
-.DS_Store
-*/sm-shop/**
-.project
-sm-admin/**/rebel*.xml
-sm-shop/**/rebel*.xml
-sm-admin/.project
-sm-core-model/.project
-sm-core-modules/.project
-sm-core/.project
-sm-shop/.project
-**/bin
-**/build
-**/.settings
-**/.classpath
-*/sm-shop/src/main/resources/*
-sm-shop/src/main/resources/database.properties
-.DS_Store
 notes/Final Report.txt
-.mvnw/*.jar
-frontend/src/App.jsx
-backend.log
-frontend/.env.development
-sm-shop/shopizer.log

@@ -77,21 +77,30 @@ Clone the repository:
 To build the application:
 -------------------
 
-1. Shopizer backend
+### Project Structure
 
+This is a monorepo with separated frontend and backend:
+- **backend/** - Java/Spring Boot backend
+- **frontend/** - Vite-based frontend application
+
+1. Shopizer backend
 
 From the command line:
 
-	$ cd shopizer
+	$ cd shopizer/backend
 	$ .\mvnw clean install
 	$ cd sm-shop
 	$ .\mvnw spring-boot:run
 
-2. Shopizer admin
+2. Shopizer frontend
 
-Form compiling and running Shopizer admin consult the repo README file
+From the command line:
 
-3. Shop sample site
+	$ cd shopizer/frontend
+	$ npm install
+	$ npm run dev
+
+3. Shopizer admin
 
 Form compiling and running Shopizer admin consult the repo README file
 
