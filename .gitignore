@@ -102,3 +102,6 @@ DEPLOYMENT_CHANGES.md
 DEPLOYMENT_CHECKLIST.md
 DEPLOYMENT.md
 backend/.env.example
+backend/sm-shop/shopizer.log.2025-12-16.038419735009000.tmp
+backend/sm-shop/files/store/DownlaodRepository.dat
+backend/sm-shop/files/store/DownlaodRepository.dat
