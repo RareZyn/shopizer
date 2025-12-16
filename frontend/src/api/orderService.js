@@ -47,7 +47,11 @@ const orderService = {
 
   // Update order status (admin)
   updateOrderStatus: async (orderId, status) => {
-    const response = await apiClient.put(`/private/orders/${orderId}/status`, { status });
+    const response = await apiClient.put(`/private/orders/${orderId}/status`, status, {
+      headers: {
+        'Content-Type': 'text/plain'
+      }
+    });
     return response.data;
   },
 

@@ -85,6 +85,35 @@ const OrderManagement = () => {
     }
   };
 
+  const getOrderTotal = (order) => {
+    // If order has a simple total/orderTotal property
+    if (typeof order.total === 'number') return order.total;
+    if (typeof order.orderTotal === 'number') return order.orderTotal;
+
+    // If order has a totals array, find the grand total
+    if (Array.isArray(order.totals) && order.totals.length > 0) {
+      // Look for the grand total (usually has code 'ot_total' or is the last item)
+      const grandTotal = order.totals.find(t =>
+        t.code === 'ot_total' ||
+        t.code === 'orderTotal' ||
+        t.module === 'ot_total'
+      );
+
+      if (grandTotal?.value !== undefined) {
+        return grandTotal.value;
+      }
+
+      // Fallback: use the last total in the array (usually grand total)
+      const lastTotal = order.totals[order.totals.length - 1];
+      if (lastTotal?.value !== undefined) {
+        return lastTotal.value;
+      }
+    }
+
+    // Fallback
+    return 0;
+  };
+
   if (loading) {
     return <Loader text="Loading orders..." />;
   }
@@ -164,7 +193,7 @@ const OrderManagement = () => {
                   <small className="text-muted">{order.customer?.emailAddress || order.billing?.email}</small>
                 </td>
                 <td>{formatDate(order.datePurchased || order.orderDate)}</td>
-                <td><strong>{formatPrice(order.total || order.orderTotal)}</strong></td>
+                <td><strong>{formatPrice(getOrderTotal(order))}</strong></td>
                 <td>
                   <Badge bg={getStatusVariant(order.status || order.orderStatus)}>
                     {order.status || order.orderStatus || 'ORDERED'}
