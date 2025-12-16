@@ -1,6 +1,31 @@
 #!/bin/bash
 # Create database.properties from environment variables for cloud deployment
 
+set -e  # Exit on error
+
+echo "=== Starting Shopizer Configuration ==="
+
+# Validate required environment variables
+if [ -z "$SPRING_DATASOURCE_URL" ]; then
+  echo "ERROR: SPRING_DATASOURCE_URL is not set"
+  exit 1
+fi
+
+if [ -z "$SPRING_DATASOURCE_USERNAME" ]; then
+  echo "ERROR: SPRING_DATASOURCE_USERNAME is not set"
+  exit 1
+fi
+
+if [ -z "$SPRING_DATASOURCE_PASSWORD" ]; then
+  echo "ERROR: SPRING_DATASOURCE_PASSWORD is not set"
+  exit 1
+fi
+
+echo "Environment variables validated successfully"
+echo "Database URL: ${SPRING_DATASOURCE_URL}"
+echo "Database User: ${SPRING_DATASOURCE_USERNAME}"
+echo "Database Password: [REDACTED]"
+
 # Create config directory
 mkdir -p /app/config
 
@@ -34,4 +59,5 @@ echo "Database configuration created at /app/config/database.properties"
 
 # Start the application with config directory in classpath
 # This makes database.properties available as classpath:database.properties
+echo "Starting application..."
 exec java $JAVA_OPTS -Dserver.port=$PORT -cp /app/config:/app/shopizer.jar org.springframework.boot.loader.JarLauncher
